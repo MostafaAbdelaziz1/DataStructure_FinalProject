@@ -195,13 +195,13 @@ public:
         if (clients_head == nullptr) {
             clients_head = client;
         } else {
-            Client* temp = clients_head;
-            while (temp->next != nullptr) {
-                temp = temp->next;
+            Client* current = clients_head;
+            while (current->next != nullptr) {
+                current = current->next;
             }
             // Set the next node of the last node to the new client
-            temp->next = client;
-            client->previous = temp;
+            current->next = client;
+            client->previous = current;
         }
         num_clients++;
         cout << "Client added successfully!\n" << endl;
@@ -351,9 +351,8 @@ public:
         bool isLoggedIn = true;
         while (isLoggedIn) {
 
-            system("cls");
             cout << endl;
-            cout << "  " << client->name << endl;
+            cout << "   *" << client->name <<"*  " << endl;
             cout << "----------------" << endl;
             cout << "1. Deposit" << endl;
             cout << "2. Withdraw" << endl;
@@ -397,7 +396,7 @@ public:
         cout << "Enter amount to deposit: ";
         cin >> amount;
         client->balance += amount;
-        cout << "Deposit successful. New balance: " << client->balance <<" "<< client->currency << endl;
+        cout << "Deposit successful! \nNew balance: " << client->balance <<" "<< client->currency << endl;
     }
 
     void withdraw(Client* client) {
@@ -408,7 +407,7 @@ public:
             cout << "Insufficient balance." << endl;
         } else {
             client->balance -= amount;
-            cout << "Withdrawal successful. New balance: " << client->balance <<" "<< client->currency << endl;
+            cout << "Withdrawal successful! \nNew balance: " << client->balance <<" "<< client->currency << endl;
         }
     }
 
@@ -425,6 +424,7 @@ public:
                 cout << "1.EURO (EUR)\n";
                 cout << "2.Kuwaiti dinar (KWD) \n";
                 cout << "3.Omani rial (OMR)\n";
+                cout << "Enter choice: ";
                 cin >> choise;
                 switch (choise)
                 {
@@ -435,7 +435,7 @@ public:
                         break;
                     }
                     else {
-                        eur = client->balance * 33.27;
+                        eur = client->balance * 0.033;
                         cout << "Your balance by EURO is " << eur;
                         break;
                     }
@@ -447,7 +447,7 @@ public:
                         break;
                     }
                     else {
-                        kwd = client->balance * 100.60;
+                        kwd = client->balance * 0.01;
                         cout << "Your balance in Kuwaiti dinar is " << kwd;
                         break;
                     }
@@ -459,7 +459,7 @@ public:
                         break;
                     }
                     else {
-                        omr = client->balance * 80.25;
+                        omr = client->balance * 0.012;
                         cout << "Your balance by Omani rial is " << omr;
                         break;
                     }
@@ -517,7 +517,7 @@ public:
             client->balance -= bamount;
             recipient->balance += bamount;
         }
-        cout << "Transfer successful!\nCurrent balance: " << client->balance <<" "<< client->currency << endl;
+        cout << "Transfer successful! \nCurrent balance: " << client->balance <<" "<< client->currency << endl;
     }
 
     // Function to take client feedback and rating
